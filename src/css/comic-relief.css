@@ -1,0 +1,9 @@
+/* comic-relief */
+@font-face {
+	font-family: Comic Relief;
+	font-style: normal;
+	font-weight: 400;
+	font-stretch: 100%;
+	src: local("Comic Relief"), local("ComicRelief"), url(comic-relief.woff2) format("woff2");
+}
+
