@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/css/style.css">
     <title>Tracker</title>
   </head>
   <body>
@@ -17,15 +16,25 @@
         </div>
         <nav class="nav">
           <ul class="nav__list">
-            <li class="nav__items text">Anime</li>
-            <li class="nav__items text">Manga</li>
-            <li class="nav__items text">List</li>
+            <li class="nav__items text"><a href="#">Anime</a></li>
+            <li class="nav__items text"><a href="#">Manga</a></li>
+            <li class="nav__items text"><a href="#">List</a></li>
           </ul>
         </nav>
       </div>
     </header>
     <main>
-
+      <div class="tracker-grid text" id="tracker-header">
+        <div class="tracker-grid__border"></div>
+        <div class="tracker-grid__border">#</div>
+        <div class="tracker-grid__border">Title</div>
+        <div class="tracker-grid__border">Type</div>
+        <div class="tracker-grid__border">Season</div>
+        <div class="tracker-grid__border">Progress</div>
+        <div class="tracker-grid__border">Score</div>
+      </div>
+      <div class="tracker-grid text" id="tracker-body"></div>
     </main>
+    <script type="module" src="/src/js/main.js"></script>
   </body>  
 </html>

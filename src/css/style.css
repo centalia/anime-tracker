@@ -1,5 +1,5 @@
 body{
-    max-width: 1440px;
+    max-width: 1080px;
     margin: 0 auto;
     padding: 0;
     background-color: #242424;
@@ -36,6 +36,7 @@ body{
     background-color: rgba(255, 140, 0, 0.541);
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
+    margin-bottom: 15px;
 
 }
 
@@ -62,4 +63,21 @@ body{
     color: white;
     list-style-type: none;
     font-size: 20px;
+}
+
+.tracker-grid{
+    display: grid;
+    grid-template-columns: 6px 20px 654px repeat(4, 100px);
+    border: 1px solid gray;
+    font-size: 15px;
+    place-content: center;
+    text-align: center;
+}
+
+.tracker-grid__border{
+    border-left: 1px solid gray;
+}
+
+.tracker-grid__status-watching{
+    background-color: green;
 }
