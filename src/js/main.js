@@ -8,11 +8,13 @@
         // {id:5, "title":"Gachiakuta", "Type":"TV", "Season":"Summer 2025", "Progress":"2/24", "Score":"-" },
     ]
         
-renderGrid()
 
 function renderGrid(){
-        const rowsTrackers = animeList.map(anime =>{
-        return `
+    const trackerBody = document.querySelector("#tracker-body")
+    trackerBody.innerHTML = '';
+
+    const newTrackerBody = animeList.map(anime =>
+    `
         <div class="tracker-grid text">
             <div class="tracker-grid__border tracker-grid__status-watching"></div>
             <div class="tracker-grid__border">${anime.id}</div>
@@ -22,13 +24,26 @@ function renderGrid(){
             <div class="tracker-grid__border">${anime.episodes}</div>
             <div class="tracker-grid__border">${anime.watched}</div>
         </div>
-        `;
-    }).join('');
+    `
+    ).join('');
 
-document.querySelector("#tracker-header").insertAdjacentHTML('afterend',rowsTrackers)
+    trackerBody.insertAdjacentHTML('beforeend',newTrackerBody)
 }
 
 function addAnime(title, type, season, episodes, watched){
+    // const exists = animeList.some(anime => 
+    //     anime.title === title &&
+    //     anime.type === type &&
+    //     anime.season === season &&
+    //     anime.episodes === episodes &&
+    //     anime.watched === watched 
+    // );
+
+    // if (exists){
+    //     console.warm(`${title} уже в списке`)
+    //     return;
+    // }
+
     animeList.push({        
         id: animeList.length + 1,
         title,
@@ -36,9 +51,11 @@ function addAnime(title, type, season, episodes, watched){
         season,
         episodes,
         watched,
-    })
-    renderGrid()
+    });
+
+    renderGrid();
 }
 
-
-
+window.addAnime = addAnime;
+window.animeList = animeList;
+window.renderGrid = renderGrid;
