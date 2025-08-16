@@ -67,7 +67,7 @@ body{
 
 .tracker-grid{
     display: grid;
-    grid-template-columns: 6px 20px 654px repeat(4, 100px);
+    grid-template-columns: 6px 45px 914px 115px;
     border: 1px solid gray;
     font-size: 15px;
     place-content: center;
@@ -78,6 +78,27 @@ body{
     border-left: 1px solid gray;
 }
 
-.tracker-grid__status-watching{
+.tracker-grid__status-complete{
     background-color: green;
+}
+
+.tracker-grid__status-watch{
+    background-color: blue;
+}
+
+.tracker-grid__status-hold{
+    background-color: yellow;
+}
+
+.tracker-grid__status-plan{
+    background-color: gray;
+}
+
+.tracker-grid__status-drop{
+    background-color: red;
+}
+
+#tracker-body{
+    display: flex;
+    flex-direction: column;
 }
