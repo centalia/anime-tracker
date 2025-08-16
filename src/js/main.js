@@ -137,8 +137,13 @@ function getFilter(){
     return filter;
 }
 
-function compare(a, b, direction){
+function compareByProgress(a, b, direction){
     const diff = a.progress - b.progress
+    return direction === "asc" ? diff : -diff
+}
+
+function compareByTitle(a, b, direction){
+    const diff = a.title.localeCompare(b.title)
     return direction === "asc" ? diff : -diff
 }
 
@@ -152,8 +157,12 @@ function applySort(array, setting){
     switch(setting.field){
         case "progress":
             sorted.sort((a, b) =>
-                compare(a, b, setting.direction))
+                compareByProgress(a, b, setting.direction))
             break;
+        case "title":
+            sorted.sort((a, b) =>
+                compareByTitle(a, b, setting.direction))
+
     }
 
     return sorted;
