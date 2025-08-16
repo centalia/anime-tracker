@@ -80,7 +80,7 @@ function renderGrid(){
             <div class="tracker-grid__border ${STATUS_CSS_CLASSES[anime.status]}"></div>
             <div class="tracker-grid__border">${anime.id}</div>
             <div class="tracker-grid__border">${anime.title}</div>
-            <div class="tracker-grid__border">${anime.progress} / ${anime.episodes}</div>
+            <div class="tracker-grid__border"><button onclick="watchNextEpisode(${anime.id})">+</button> ${anime.progress} / ${anime.episodes}</div>
         </div>
     `
     ).join('');
@@ -113,6 +113,15 @@ function addAnime(title, /*type, season,*/ episodes, status){
 
     saveToLocalStorage();
     renderGrid();
+}
+
+function addAnimeFromForm(){
+    const title = document.querySelector('#anime-title').value;
+    const episodes = parseInt(document.querySelector('#anime-episodes').value);
+    const status = document.querySelector('#anime-status').value;
+
+    addAnime(title, episodes, status)
+
 }
 
 function watchNextEpisode(id){
