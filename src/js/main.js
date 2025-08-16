@@ -15,22 +15,59 @@ const STATUS_CSS_CLASSES = {
     [STATUS.DROPPED]: `tracker-grid__status-drop`,
     [STATUS.PLAN_TO_WATCH]: `tracker-grid__status-plan`
 };
-const animeList = [
-    {id:1, title:"Blood+", episodes: 50, progress: 50, status: "completed"},
-    {id:2, title:"Call o the Night Season 2", episodes: 12, progress: 2, status: "watching"},
-    {id:3, title:"Black Butler: Emerald Witch Arc", episodes: 13, progress: 4, status: "watching"},
-    {id:4, title:"Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin", episodes: 12, progress: 2, status: "watching"},
-    {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
-];
 
+const DEFAULT_ANIME_LIST = [];
+
+// const animeList = [
+//     {id:1, title:"Blood+", episodes: 50, progress: 50, status: "completed"},
+//     {id:2, title:"Call o the Night Season 2", episodes: 12, progress: 2, status: "watching"},
+//     {id:3, title:"Black Butler: Emerald Witch Arc", episodes: 13, progress: 4, status: "watching"},
+//     {id:4, title:"Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin", episodes: 12, progress: 2, status: "watching"},
+//     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
+// ];
+
+
+function saveToLocalStorage(){
+    localStorage.setItem(
+        'animeTrackerData', JSON.stringify({
+            animeList,
+            filter,
+            sortSetting
+        })
+    );
+}
+
+function loadFromLocalStorage(){
+    const data = JSON.parse(localStorage.getItem(
+        'animeTrackerData',
+    ));
+
+    if (data) {
+        animeList   = data.animeList || [];
+        filter      = data.filter || null;
+        sortSetting = data.sortSetting || {field : null, direction: 'asc'};
+    }
+}
+
+function clearStorage(){
+    localStorage.removeItem('animeTrackerData');
+    window.location.reload();
+}
+
+let animeList = [];
 let sortSetting = {
     field: null,
     direction: "asc"
+};
+let filter = null;
+
+
+loadFromLocalStorage();
+if(animeList.length === 0 ){
+    animeList = [...DEFAULT_ANIME_LIST];
 }
 
-let filter = null;
 renderGrid()
-
 function renderGrid(){
     const trackerBody = document.querySelector("#tracker-body");
     trackerBody.innerHTML = '';
@@ -74,6 +111,7 @@ function addAnime(title, /*type, season,*/ episodes, status){
         status,
     });
 
+    saveToLocalStorage();
     renderGrid();
 }
 
@@ -94,6 +132,8 @@ function updateProgress(id, progress){
     } else {
         console.log("Аниме не найдено");
     }
+
+    saveToLocalStorage();
 }
 
 function removeAnime(id){
@@ -107,6 +147,8 @@ function removeAnime(id){
     } else {
         console.log("Аниме не найдено");
     }
+
+    saveToLocalStorage();
 }
 
 function updateStatus(id, newStatus){
@@ -114,6 +156,7 @@ function updateStatus(id, newStatus){
     if(updateAnime){
         animeList.find(anime => anime === id);
         updateAnime.status = newStatus;
+        saveToLocalStorage();
         renderGrid();
     } else {
         console.log("Аниме не найдено");
