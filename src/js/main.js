@@ -1,4 +1,4 @@
-import '@/css/style.css'
+// import '@/css/style.css'
 
 const STATUS = {
     WATCHING: "watching",
@@ -23,6 +23,11 @@ const animeList = [
     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
 ];
 
+let sortSetting = {
+    field: null,
+    direction: "asc"
+}
+
 let filter = null;
 renderGrid()
 
@@ -31,8 +36,8 @@ function renderGrid(){
     trackerBody.innerHTML = '';
 
     const filteredAnimeByStatus = filterByStatus(filter);
-
-    const newTrackerBody = filteredAnimeByStatus.map(anime =>
+    const sortedAnime = applySort(filteredAnimeByStatus, sortSetting)
+    const newTrackerBody = sortedAnime.map(anime =>
     `
         <div class="tracker-grid text">
             <div class="tracker-grid__border ${STATUS_CSS_CLASSES[anime.status]}"></div>
@@ -116,11 +121,11 @@ function updateStatus(id, newStatus){
 }
 
 function filterByStatus(status){
-        if (!status){
-            return animeList
-        } else {
-            return animeList.filter(anime => anime.status === status);
-        }
+    if (!status){
+        return animeList
+    } else {
+        return animeList.filter(anime => anime.status === status);
+    }
 }
 
 function setFilter(newFilter){
@@ -129,17 +134,39 @@ function setFilter(newFilter){
 }
 
 function getFilter(){
-    return filter
+    return filter;
 }
 
-window.setFilter        = setFilter;
-window.getFilter        = getFilter;
-window.filterByStatus   = filterByStatus;
-window.STATUS           = STATUS;
-window.updateStatus     = updateStatus;
-window.removeAnime      = removeAnime;
-window.watchNextEpisode = watchNextEpisode;
-window.updateProgress   = updateProgress;
-window.addAnime         = addAnime;
-window.animeList        = animeList;
-window.renderGrid       = renderGrid;
+function compare(a, b, direction){
+    const diff = a.progress - b.progress
+    return direction === "asc" ? diff : -diff
+}
+
+function applySort(array, setting){
+    if (!setting || !setting.field){
+        return [...array];
+    }
+
+    const sorted = [...array];
+
+    switch(setting.field){
+        case "progress":
+            sorted.sort((a, b) =>
+                compare(a, b, setting.direction))
+            break;
+    }
+
+    return sorted;
+}
+
+function setSort(newSetting){
+    sortSetting = {
+        ...sortSetting,
+        ...newSetting
+    }
+    renderGrid()
+}
+
+function getSort(){
+    return sortSetting;
+}
