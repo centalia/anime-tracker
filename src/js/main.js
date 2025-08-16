@@ -1,38 +1,38 @@
-    import '@/css/style.css'
+import '@/css/style.css'
 
-    const STATUS = {
-        WATCHING: "watching",
-        COMPLETED: "completed",
-        ON_HOLD: "on_hold",
-        DROPPED: "dropped",
-        PLAN_TO_WATCH: "plan_to_watch"
-    }    
-    
-    const STATUS_CSS_CLASSES = {
-        [STATUS.WATCHING]: `tracker-grid__status-watch`,
-        [STATUS.COMPLETED]: `tracker-grid__status-complete`,
-        [STATUS.ON_HOLD]: `tracker-grid__status-hold`,
-        [STATUS.DROPPED]: `tracker-grid__status-drop`,
-        [STATUS.PLAN_TO_WATCH]: `tracker-grid__status-plan`
-    }
+const STATUS = {
+    WATCHING: "watching",
+    COMPLETED: "completed",
+    ON_HOLD: "on_hold",
+    DROPPED: "dropped",
+    PLAN_TO_WATCH: "plan_to_watch"
+};  
 
+const STATUS_CSS_CLASSES = {
+    [STATUS.WATCHING]: `tracker-grid__status-watch`,
+    [STATUS.COMPLETED]: `tracker-grid__status-complete`,
+    [STATUS.ON_HOLD]: `tracker-grid__status-hold`,
+    [STATUS.DROPPED]: `tracker-grid__status-drop`,
+    [STATUS.PLAN_TO_WATCH]: `tracker-grid__status-plan`
+};
+const animeList = [
+    {id:1, title:"Blood+", episodes: 50, progress: 50, status: "completed"},
+    {id:2, title:"Call o the Night Season 2", episodes: 12, progress: 2, status: "watching"},
+    {id:3, title:"Black Butler: Emerald Witch Arc", episodes: 13, progress: 4, status: "watching"},
+    {id:4, title:"Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin", episodes: 12, progress: 2, status: "watching"},
+    {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
+];
 
-
-    const animeList = [
-        {id:1, title:"Blood+", episodes: 50, progress: 20, status: "watching"},
-        {id:2, title:"Call o the Night Season 2", episodes: 12, progress: 2, status: "watching"},
-        {id:3, title:"Black Butler: Emerald Witch Arc", episodes: 13, progress: 4, status: "watching"},
-        {id:4, title:"Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin", episodes: 12, progress: 2, status: "watching"},
-        {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
-    ]
-        
+let filter = null;
 renderGrid()
 
 function renderGrid(){
-    const trackerBody = document.querySelector("#tracker-body")
+    const trackerBody = document.querySelector("#tracker-body");
     trackerBody.innerHTML = '';
 
-    const newTrackerBody = animeList.map(anime =>
+    const filteredAnimeByStatus = filterByStatus(filter);
+
+    const newTrackerBody = filteredAnimeByStatus.map(anime =>
     `
         <div class="tracker-grid text">
             <div class="tracker-grid__border ${STATUS_CSS_CLASSES[anime.status]}"></div>
@@ -43,7 +43,9 @@ function renderGrid(){
     `
     ).join('');
 
-    trackerBody.insertAdjacentHTML('beforeend',newTrackerBody)
+    
+
+    trackerBody.insertAdjacentHTML('beforeend',newTrackerBody);
 }
 
 function addAnime(title, /*type, season,*/ episodes, status){
@@ -55,6 +57,7 @@ function addAnime(title, /*type, season,*/ episodes, status){
         console.log(`${title} уже в списке`)
         return;
     }
+
 
     animeList.push({        
         id: animeList.length + 1,
@@ -112,7 +115,26 @@ function updateStatus(id, newStatus){
     }
 }
 
+function filterByStatus(status){
+        if (!status){
+            return animeList
+        } else {
+            return animeList.filter(anime => anime.status === status);
+        }
+}
 
+function setFilter(newFilter){
+    filter = newFilter;
+    renderGrid()
+}
+
+function getFilter(){
+    return filter
+}
+
+window.setFilter        = setFilter;
+window.getFilter        = getFilter;
+window.filterByStatus   = filterByStatus;
 window.STATUS           = STATUS;
 window.updateStatus     = updateStatus;
 window.removeAnime      = removeAnime;
