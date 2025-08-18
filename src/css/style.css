@@ -119,3 +119,95 @@ body{
     gap: 10px;
     margin-bottom: 10px;
 }
+
+.add-title-btn {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 1000;
+    
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid black;
+}
+
+.modal-header h3{
+    color: #fff;
+    font-size: 18px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.modal-content {
+    width: 500px;
+    height: 150px;
+    padding: 50px 14px 0;
+    border: 2px solid black;
+    background-color: #333;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;;
+}
+
+.modal-footer{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.add-anime-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-anime-form p{
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.add-anime-form input{
+    margin-left: 10px;
+    width: 350px;
+}
+
+.hidden {
+    display: none;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color:rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    cursor: pointer;
+}
+

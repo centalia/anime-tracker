@@ -26,6 +26,38 @@ const DEFAULT_ANIME_LIST = [];
 //     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
 // ];
 
+const btnOpenModal = document.querySelector('.show-modal');
+    modalWindow = document.querySelector('.modal');
+    btnCloseModal = document.querySelector('.close-modal');
+    overlayModal = document.querySelector('.overlay');
+
+btnOpenModal.addEventListener("click", function(){
+    overlayModal.classList.remove('hidden');
+    modalWindow.classList.remove('hidden');
+});
+
+btnCloseModal.addEventListener("click", function(){
+    overlayModal.classList.add('hidden');
+    modalWindow.classList.add('hidden');
+});
+
+overlayModal.addEventListener("click", function(e){
+    if(e.target === overlayModal){
+        overlayModal.classList.add('hidden');
+        modalWindow.classList.add('hidden');
+    }
+});
+
+modalWindow.addEventListener('click', function(e){
+    e.stopPropagation();
+});
+
+document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !modalWindow.classList.contains('hidden')){
+            overlayModal.classList.add('hidden');
+            modalWindow.classList.add('hidden');
+    }
+});
 
 function saveToLocalStorage(){
     localStorage.setItem(
@@ -113,6 +145,8 @@ function addAnime(title, /*type, season,*/ episodes, status){
 
     saveToLocalStorage();
     renderGrid();
+
+
 }
 
 function addAnimeFromForm(){
@@ -120,7 +154,11 @@ function addAnimeFromForm(){
     const episodes = parseInt(document.querySelector('#anime-episodes').value);
     const status = document.querySelector('#anime-status').value;
 
-    addAnime(title, episodes, status)
+    addAnime(title, episodes, status);
+    document.querySelector('#anime-title').value = '';
+    document.querySelector('#anime-episodes').value = '';
+    overlayModal.classList.add('hidden');
+    modalWindow.classList.add('hidden');
 
 }
 

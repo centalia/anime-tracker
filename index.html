@@ -15,19 +15,32 @@
           </div>
         </div>
       </div>
-      <div class="add-anime-form">
-        <input type="text" id="anime-title" placeholder="Название тайтла">
-        <input type="number" id="anime-episodes" placeholder="Всего эпизодов">
-        <select id="anime-status">
-          <option value="watching">Смотрю</option>
-          <option value="completed">Просмотрено</option>
-          <option value="on_hold">Отложено</option>
-          <option value="dropped">Брошено</option>
-          <option value="plan_to_watch">В планах</option>
-        </select>
-        <button onclick="addAnimeFromForm()">Добавить Аниме</button>
+      <div class="add-title-btn">
+        <button class="show-modal">Добавить в список</button>
       </div>
-      
+      <div class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Добавление тайтла</h3>
+            <button class="close-modal">&times;</button>
+          </div>
+          <div class="add-anime-form">
+            <p>Название тайтла: <input type="text" id="anime-title" placeholder="Название тайтла"></p>
+            <p>Кол-во эпизодов: <input type="number" id="anime-episodes" placeholder="Всего эпизодов"></p>
+            <p>Статус просмотра: <select id="anime-status">
+              <option value="watching">Смотрю</option>
+              <option value="completed">Просмотрено</option>
+              <option value="on_hold">Отложено</option>
+              <option value="dropped">Брошено</option>
+              <option value="plan_to_watch">В планах</option>
+            </select></p>
+            <div class="modal-footer">
+              <button type="button" onclick="addAnimeFromForm()">Добавить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
     </header>
     <main>
       <nav class="nav">
@@ -40,7 +53,6 @@
           <li class="nav__items"><button onclick="setFilter('dropper')">Брошено</button></li>
         </ul>
       </nav>
-
       <div class="tracker-grid text" id="tracker-header">
         <div class="tracker-grid__border"></div>
         <div class="tracker-grid__border">#</div>
