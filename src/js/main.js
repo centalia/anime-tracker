@@ -26,10 +26,13 @@ const DEFAULT_ANIME_LIST = [];
 //     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
 // ];
 
-const btnOpenModal = document.querySelector('.show-modal');
-    modalWindow = document.querySelector('.modal');
-    btnCloseModal = document.querySelector('.close-modal');
-    overlayModal = document.querySelector('.overlay');
+const btnOpenModal      = document.querySelector('.show-modal');
+    modalWindow         = document.querySelector('.modal');
+    btnCloseModal       = document.querySelector('.close-modal');
+    overlayModal        = document.querySelector('.overlay');
+    btnOpenToast        = document.querySelector('.toast-btn');
+    toastNotification   = document.querySelector('.toast');
+
 
 btnOpenModal.addEventListener("click", function(){
     overlayModal.classList.remove('hidden');
@@ -59,6 +62,16 @@ document.addEventListener('keydown', function(e){
     }
 });
 
+function showToast(message){
+    toastNotification.textContent = message;
+    toastNotification.classList.add('toast-show');
+
+    setTimeout(() => {
+        toastNotification.classList.remove('toast-show')
+    }, 3000);
+}
+
+
 function saveToLocalStorage(){
     localStorage.setItem(
         'animeTrackerData', JSON.stringify({
@@ -84,6 +97,13 @@ function loadFromLocalStorage(){
 function clearStorage(){
     localStorage.removeItem('animeTrackerData');
     window.location.reload();
+}
+
+function clearForm(){
+    document.querySelector('#anime-title').value = '';
+    document.querySelector('#anime-episodes').value = '';
+    overlayModal.classList.add('hidden');
+    modalWindow.classList.add('hidden');
 }
 
 let animeList = [];
@@ -153,12 +173,18 @@ function addAnimeFromForm(){
     const title = document.querySelector('#anime-title').value;
     const episodes = parseInt(document.querySelector('#anime-episodes').value);
     const status = document.querySelector('#anime-status').value;
+    let exists = animeList.some(anime => 
+        anime.title === title
+    );
 
-    addAnime(title, episodes, status);
-    document.querySelector('#anime-title').value = '';
-    document.querySelector('#anime-episodes').value = '';
-    overlayModal.classList.add('hidden');
-    modalWindow.classList.add('hidden');
+    if(exists){
+        showToast(`${title} уже в списке`)
+    } else {
+        addAnime(title, episodes, status);
+        showToast(`${title} добавлен в список`);
+    }
+
+    clearForm();
 
 }
 

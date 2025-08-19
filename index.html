@@ -21,13 +21,17 @@
       <div class="modal hidden">
         <div class="modal-content">
           <div class="modal-header">
-            <h3>Добавление тайтла</h3>
+            <h3 class="text">Добавление тайтла</h3>
             <button class="close-modal">&times;</button>
           </div>
-          <div class="add-anime-form">
-            <p>Название тайтла: <input type="text" id="anime-title" placeholder="Название тайтла"></p>
-            <p>Кол-во эпизодов: <input type="number" id="anime-episodes" placeholder="Всего эпизодов"></p>
-            <p>Статус просмотра: <select id="anime-status">
+          <div class="add-anime-form text">
+              <div class="add-anime-form-input">
+                <p class="text">Название тайтла: </p><input type="text" id="anime-title" placeholder="Название тайтла">
+              </div>
+              <div class="add-anime-form-input">
+                <p class="text">Кол-во эпизодов: </p><input type="number" id="anime-episodes" placeholder="Всего эпизодов">
+              </div>
+            <p class="text">Статус просмотра: <select id="anime-status">
               <option value="watching">Смотрю</option>
               <option value="completed">Просмотрено</option>
               <option value="on_hold">Отложено</option>
@@ -61,6 +65,9 @@
       </div>
       <div class="tracker-grid text" id="tracker-body"></div>
     </main>
+
+    <div class="toast"></div>
+
     <script src="/src/js/main.js"></script>
     <script type="module" src="/src/js/css.js"></script>
   </body>  
