@@ -1,0 +1,32 @@
+{
+  "name": "anime-tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@a1rth/css-normalize": "^1.2.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "description": "",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/centalia/anime-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/centalia/anime-tracker/issues"
+  },
+  "homepage": "https://github.com/centalia/anime-tracker#readme"
+}

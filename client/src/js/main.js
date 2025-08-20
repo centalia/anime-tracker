@@ -165,8 +165,6 @@ function addAnime(title, /*type, season,*/ episodes, status){
 
     saveToLocalStorage();
     renderGrid();
-
-
 }
 
 function addAnimeFromForm(){
