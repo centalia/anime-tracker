@@ -1,4 +1,5 @@
 // import '@/css/style.css'
+import { aniDB } from "./animeDB";
 
 const STATUS = {
     WATCHING: "watching",
@@ -27,11 +28,11 @@ const DEFAULT_ANIME_LIST = [];
 // ];
 
 const btnOpenModal      = document.querySelector('.show-modal');
-    modalWindow         = document.querySelector('.modal');
-    btnCloseModal       = document.querySelector('.close-modal');
-    overlayModal        = document.querySelector('.overlay');
-    btnOpenToast        = document.querySelector('.toast-btn');
-    toastNotification   = document.querySelector('.toast');
+const modalWindow         = document.querySelector('.modal');
+const btnCloseModal       = document.querySelector('.close-modal');
+const overlayModal        = document.querySelector('.overlay');
+const btnOpenToast        = document.querySelector('.toast-btn');
+const toastNotification   = document.querySelector('.toast');
 
 
 btnOpenModal.addEventListener("click", function(){
@@ -70,6 +71,28 @@ function showToast(message){
         toastNotification.classList.remove('toast-show')
     }, 3000);
 }
+
+let animeDB = new aniDB('animeList, 1');
+await animeDB.init();
+
+await animeDB.addAnime({
+    id:1, 
+    title:"Blood+", 
+    episodes: 20, 
+    progress: 50, 
+    status: "watching"
+})
+
+await animeDB.addAnime({
+    id:2, 
+    title:"Blood+1", 
+    episodes: 20, 
+    progress: 50, 
+    status: "watching"
+})
+
+const allAnime = await animeDB.getAllAnime();
+console.log(allAnime);
 
 
 function saveToLocalStorage(){
@@ -293,3 +316,4 @@ function setSort(newSetting){
 function getSort(){
     return sortSetting;
 }
+
