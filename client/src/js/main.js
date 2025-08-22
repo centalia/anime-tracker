@@ -27,12 +27,12 @@ const DEFAULT_ANIME_LIST = [];
 //     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
 // ];
 
-const btnOpenModal      = document.querySelector('.show-modal');
-const modalWindow         = document.querySelector('.modal');
-const btnCloseModal       = document.querySelector('.close-modal');
-const overlayModal        = document.querySelector('.overlay');
-const btnOpenToast        = document.querySelector('.toast-btn');
-const toastNotification   = document.querySelector('.toast');
+const btnOpenModal          = document.querySelector('.show-modal');
+const modalWindow           = document.querySelector('.modal');
+const btnCloseModal         = document.querySelector('.close-modal');
+const overlayModal          = document.querySelector('.overlay');
+const btnOpenToast          = document.querySelector('.toast-btn');
+const toastNotification     = document.querySelector('.toast');
 
 
 btnOpenModal.addEventListener("click", function(){

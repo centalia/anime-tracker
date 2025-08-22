@@ -6,7 +6,7 @@ export class aniDB{
     
     async init(){
         return new Promise((resolve, reject) => {
-            const dbOpen = window.indexedDB.open(this.dbName, this.dbVer);
+            const dbOpen = indexedDB.open(this.dbName, this.dbVer);
 
             // if(dbUpg){
             //     dbOpen.onupgradeneeded = (e) => {

@@ -1,4 +1,5 @@
 const express = require('express');
+const { connectDB, getDB, isConnected } = require('./mongoAniDB');
     fs = require('fs');
     cors = require('cors');
     path = require('path')
@@ -30,10 +31,44 @@ app.use(function(req, _, next){
     next();
 });
 
+
+app.use('/src', express.static(path.join(__dirname, '/src')))
 app.use(express.static(path.join(__dirname, '../client')))
+
+connectDB().then(() => {
+    app.listen(3001, () => {
+        console.log('aniTracker Server запущен успешно');
+        console.log('MondoDB:', isConnected() ? 'Connect' : 'Disconnect');
+        console.log('DB instance:', getDB ? 'Exists' : 'Undefined');
+        
+    });
+}).catch(err => {
+    console.log('aniTracker Server не запущен');
+    
+})
+
+// app.get('/', (req, res) => {
+//     // res.sendFile(__dirname + "/index.html");
+// });
 
 app.get('/api', cors(), (req, res) => {
     res.json(animeList);
+});
+
+app.get('/api/anime', async (req, res) => {
+    try{
+        const db = getDB();
+        if(!db){
+            return res.status(500).json({ error: 'Database not available' });
+        }
+        const anime = await db.collection('anime').find().toArray();
+        console.log('Found Anime: ', anime);
+        res.json(anime);
+    } catch(error){
+        res.status(500).json({
+            error: 'DB error: ' + error.massage
+        });
+    }
 });
 
 app.post('/api', (req, res) => {
@@ -65,6 +100,3 @@ app.post('/api', (req, res) => {
     res.status(201).json(newAnime)
 });
 
-app.listen(3001, function(){
-    console.log('Серв слушает 3001 порт');
-});
