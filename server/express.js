@@ -1,5 +1,6 @@
 const express = require('express');
 const { connectDB, getDB, isConnected } = require('./mongoAniDB');
+const { ObjectId } = require('mongodb');
     fs = require('fs');
     cors = require('cors');
     path = require('path')
@@ -7,12 +8,10 @@ const { connectDB, getDB, isConnected } = require('./mongoAniDB');
 const app = express();
     corsOptions = {
         origin: 'http://localhost:5173',
-        method: ['GET', 'POST']
+        method: ['GET', 'POST', 'PATCH', 'DELETE']
     };
 app.use(cors(corsOptions));
 app.use(express.json());
-
-let animeList = [];
 
 app.use(function(req, _, next){
     const now = new Date();
@@ -47,14 +46,6 @@ connectDB().then(() => {
     
 })
 
-// app.get('/', (req, res) => {
-//     // res.sendFile(__dirname + "/index.html");
-// });
-
-app.get('/api', cors(), (req, res) => {
-    res.json(animeList);
-});
-
 app.get('/api/anime', async (req, res) => {
     try{
         const db = getDB();
@@ -62,7 +53,6 @@ app.get('/api/anime', async (req, res) => {
             return res.status(500).json({ error: 'Database not available' });
         }
         const anime = await db.collection('anime').find().toArray();
-        console.log('Found Anime: ', anime);
         res.json(anime);
     } catch(error){
         res.status(500).json({
@@ -71,32 +61,135 @@ app.get('/api/anime', async (req, res) => {
     }
 });
 
-app.post('/api', (req, res) => {
-    console.log('POST /api - Received data:', req.body);
-    console.log('Request headers:', req.headers);
-    console.log('Current animeList before:', animeList);
+app.post('/api/anime', async (req, res) => {
+    
+    try{
+        let db = getDB();
+        const {title, episodes, status} = req.body;
+        const exists = await db.collection('anime').findOne({
+            title,
+        })
 
-    const {title, episodes, status} = req.body;
-    const exists = animeList.some(anime => 
-        anime.title === title
-    );
+        if (exists){
+        return res.status(400).json({
+            error: `${title} уже в списке`
+        });
+        }
 
-    if (exists){
-        return res.status(400).json({error: `${title} уже в списке`});
-    }
-
-
-    const newAnime = {        
-        id: Date.now(),
+        const newAnime = {        
         title,
         episodes: parseInt(episodes),
         progress: 0,
         status,
     };
+        const anititle = db.collection('anime').insertOne(newAnime);
 
-    animeList.push(newAnime)
-    console.log('Added new anime:', newAnime);
-    console.log('Current animeList after:', animeList);
-    res.status(201).json(newAnime)
+        res.status(201).json({
+            _id: anititle.insertedId,
+            ...newAnime
+        })
+    } catch(error) {
+        res.status(500).json({
+            error: "Error add"
+        });
+    }    
 });
 
+app.patch('/api/anime/:id/progress', async (req, res) => {
+    try {
+        let db = getDB();
+        const { id } = req.params;
+        const { progress } = req.body;
+
+        const updatedTitle = await db.collection('anime').updateOne({
+            _id: new ObjectId(id) 
+            },
+            {
+                $inc:{
+                    progress: parseInt(progress),
+                }
+            }
+        ); 
+
+        res.json({
+            modifiedCount: updatedTitle.modifiedCount
+        });
+
+    } catch (error) {
+        console.error('Update error:', error);
+        res.status(500).json({ error: 'Something went wrong'
+        });
+    }
+});
+
+app.patch('/api/anime/:id/progress/increment', async (req, res) => {
+    try {
+        let db = getDB();
+        const { id } = req.params;
+
+        const updatedTitle = await db.collection('anime').updateOne({
+            _id: new ObjectId(id) 
+            },
+            {
+                $inc:{
+                    progress: 1,
+                }
+            }
+        ); 
+
+        res.json({
+            modifiedCount: updatedTitle.modifiedCount
+        });
+
+    } catch (error) {
+        console.error('Update error:', error);
+        res.status(500).json({ error: 'Something went wrong'
+        });
+    }
+});
+
+app.patch('/api/anime/:id/status', async (req, res) => {
+    try {
+        let db = getDB();
+        const { id } = req.params;
+        const { status } = req.body;
+
+        const updatedTitle = await db.collection('anime').updateOne({
+            _id: new ObjectId(id) 
+            },
+            {
+                $set:{
+                    status: status,
+                }
+            }
+        ); 
+
+        res.json({
+            modifiedCount: updatedTitle.modifiedCount
+        });
+
+    } catch (error) {
+        console.error('Update error:', error);
+        res.status(500).json({ error: 'Something went wrong'
+        });
+    }
+});
+
+app.delete('/api/anime/:id', async (req, res) => {
+    try {
+        let db = getDB();
+        const { id } = req.params;
+
+        const deleteTitle = await db.collection('anime').deleteOne({
+            _id: new ObjectId(id)
+        })
+
+        res.json({
+            deletedCount: deleteTitle.deletedCount
+        })
+    } catch(error) {
+        console.error('Delete error:', error);
+        res.status(500).json({ error: 'Something went wrong'
+        });
+    }
+});
