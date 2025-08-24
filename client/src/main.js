@@ -1,5 +1,12 @@
 // import '@/css/style.css'
-import { aniDB } from "./animeDB";
+import { aniDB } from "./js/animeDB";
+import { createApp } from "vue";
+import App from './App.vue'
+import animeList from './components/animeList.vue'
+
+createApp(App).mount('#app');
+createApp(animeList).mount('#animeList')
+
 
 const STATUS = {
     WATCHING: "watching",
@@ -17,8 +24,6 @@ const STATUS_CSS_CLASSES = {
     [STATUS.PLAN_TO_WATCH]: `tracker-grid__status-plan`
 };
 
-const DEFAULT_ANIME_LIST = [];
-
 // const animeList = [
 //     {id:1, title:"Blood+", episodes: 50, progress: 50, status: "completed"},
 //     {id:2, title:"Call o the Night Season 2", episodes: 12, progress: 2, status: "watching"},
@@ -26,7 +31,7 @@ const DEFAULT_ANIME_LIST = [];
 //     {id:4, title:"Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin", episodes: 12, progress: 2, status: "watching"},
 //     {id:5, title:"Gachiakuta", episodes: 24, progress: 2, status: "watching"},
 // ];
-
+/*
 const btnOpenModal          = document.querySelector('.show-modal');
 const modalWindow           = document.querySelector('.modal');
 const btnCloseModal         = document.querySelector('.close-modal');
@@ -75,52 +80,7 @@ function showToast(message){
 let animeDB = new aniDB('animeList, 1');
 await animeDB.init();
 
-await animeDB.addAnime({
-    id:1, 
-    title:"Blood+", 
-    episodes: 20, 
-    progress: 50, 
-    status: "watching"
-})
-
-await animeDB.addAnime({
-    id:2, 
-    title:"Blood+1", 
-    episodes: 20, 
-    progress: 50, 
-    status: "watching"
-})
-
 const allAnime = await animeDB.getAllAnime();
-console.log(allAnime);
-
-
-function saveToLocalStorage(){
-    localStorage.setItem(
-        'animeTrackerData', JSON.stringify({
-            animeList,
-            filter,
-            sortSetting
-        })
-    );
-}
-
-function loadFromLocalStorage(){
-    const data = JSON.parse(localStorage.getItem(
-        'animeTrackerData',
-    ));
-
-    if (data) {
-        animeList   = data.animeList || [];
-        filter      = data.filter || null;
-        sortSetting = data.sortSetting || {field : null, direction: 'asc'};
-    }
-}
-
-function clearStorage(){
-    localStorage.removeItem('animeTrackerData');
-    window.location.reload();
-}
 
 function clearForm(){
     document.querySelector('#anime-title').value = '';
@@ -135,12 +95,6 @@ let sortSetting = {
     direction: "asc"
 };
 let filter = null;
-
-
-loadFromLocalStorage();
-if(animeList.length === 0 ){
-    animeList = [...DEFAULT_ANIME_LIST];
-}
 
 renderGrid()
 function renderGrid(){
@@ -164,8 +118,8 @@ function renderGrid(){
 
     trackerBody.insertAdjacentHTML('beforeend',newTrackerBody);
 }
-
-function addAnime(title, /*type, season,*/ episodes, status){
+ 
+function addAnime(title, /*type, season, episodes, status){
     const exists = animeList.some(anime => 
         anime.title === title
     );
@@ -186,7 +140,6 @@ function addAnime(title, /*type, season,*/ episodes, status){
         status,
     });
 
-    saveToLocalStorage();
     renderGrid();
 }
 
@@ -315,5 +268,5 @@ function setSort(newSetting){
 
 function getSort(){
     return sortSetting;
-}
+} */
 

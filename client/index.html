@@ -3,49 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Russo+One&display=swap" rel="stylesheet">
     <title>Tracker</title>
   </head>
   <body>
-    <header>
-      <div class="head_container">
-        <div class="brand_logo">
-          <img src="/src/assets/img/logo.png">
-          <div class="brand_logo-text">
-            <p class="text">Centalia Anime Tracker</p>
-          </div>
-        </div>
-      </div>
-      <div class="add-title-btn">
-        <button class="show-modal">Добавить в список</button>
-      </div>
-      <div class="modal hidden">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="text">Добавление тайтла</h3>
-            <button class="close-modal">&times;</button>
-          </div>
-          <div class="add-anime-form text">
-              <div class="add-anime-form-input">
-                <p class="text">Название тайтла: </p><input type="text" id="anime-title" placeholder="Название тайтла">
-              </div>
-              <div class="add-anime-form-input">
-                <p class="text">Кол-во эпизодов: </p><input type="number" id="anime-episodes" placeholder="Всего эпизодов">
-              </div>
-            <p class="text">Статус просмотра: <select id="anime-status">
-              <option value="watching">Смотрю</option>
-              <option value="completed">Просмотрено</option>
-              <option value="on_hold">Отложено</option>
-              <option value="dropped">Брошено</option>
-              <option value="plan_to_watch">В планах</option>
-            </select></p>
-            <div class="modal-footer">
-              <button type="button" onclick="addAnimeFromForm()">Добавить</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="overlay hidden"></div>
-    </header>
+    <div id="app"></div>
+    <div id="animeList"></div>
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- 
     <main>
       <nav class="nav">
         <ul class="nav__list">
@@ -57,18 +25,10 @@
           <li class="nav__items"><button onclick="setFilter('dropper')">Брошено</button></li>
         </ul>
       </nav>
-      <div class="tracker-grid text" id="tracker-header">
-        <div class="tracker-grid__border"></div>
-        <div class="tracker-grid__border">#</div>
-        <div class="tracker-grid__border">Title</div>
-        <div class="tracker-grid__border">Episodes</div>
-      </div>
-      <div class="tracker-grid text" id="tracker-body"></div>
+
     </main>
+    <div class="toast"></div> -->
+    <!-- <script type="module" src="/src/js/css.js"></script> -->
 
-    <div class="toast"></div>
-
-    <script type="module" src="/src/js/main.js"></script>
-    <script type="module" src="/src/js/css.js"></script>
   </body>  
 </html>
