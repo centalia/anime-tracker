@@ -1,0 +1,30 @@
+@use '@/styles/scss/_variables' as *;
+@use '@/styles/scss/_fonts' as *;
+
+@mixin tracker-grid(){
+    display: grid;
+    grid-template-columns: 78px 829px 163px 229px;
+    grid-template-rows: 47px;
+
+    place-items: center;
+    color: $base-white;
+
+    border: 1px solid $text-in-field;
+    border-radius: 0;
+
+    &:not(.tracker-grid__body){
+        @include font('heading', 'h6', 'normal', '171');
+        border-radius: 8px 8px 0 0;
+    }
+
+    &:not(.tracker-grid__header){
+        @include font('primary', 'body', 'normal', '171');
+        &:not(:last-child) {
+            border-bottom: none;
+        }
+        &:last-child {
+            border-radius: 0 0 8px 8px;
+        }
+    }
+    
+}

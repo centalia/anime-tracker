@@ -1,0 +1,41 @@
+@use 'sass:map';
+// @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Russo+One&display=swap');
+
+$font-family: (
+    'primary': 'Lato',
+    'heading': 'Russo One',
+    'accent': 'Bebas Neue',
+);
+
+$font-sizes:(
+    'h1'    : 4.5rem,       // 72px
+    'h2'    : 4rem,         // 64px
+    'h3'    : 3rem,         // 48px
+    'h4'    : 2rem,         // 32px
+    'h5'    : 1.5rem,       // 24px
+    'h6'    : 1rem,         // 16px
+    'body'  : 0.875rem,   // 14px
+    'body2' : 0.75rem,   // 12px
+);
+
+$font-weights:(
+    'normal'    : 400,
+    'medium'    : 500,
+    'semibold'  : 600,
+    'bold'      : 700,
+);
+
+$line-heights: (
+    '133': 133%,
+    '137': 137%,
+    '150': 150%,
+    '171': 171%,
+    '200': 200%,
+);
+
+@mixin font($family: 'primary', $size: 'h6', $weight: 'normal', $line-height: '150' ){
+    font-family: map.get($font-family, $family), sans-serif;
+    font-size: map.get($font-sizes, $size);
+    font-weight: map.get($font-weights, $weight);
+    line-height: map.get($line-heights, $line-height);
+}

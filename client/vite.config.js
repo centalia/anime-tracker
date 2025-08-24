@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import path from 'path'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
     resolve: {
@@ -7,6 +8,7 @@ export default defineConfig({
             "@": path.resolve(__dirname, './src')
         }
     },
+    plugins: [vue()],
     server: {
         proxy: {
             '/api': {
