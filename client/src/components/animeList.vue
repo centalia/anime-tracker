@@ -13,7 +13,9 @@
                 <div class="">1</div>
                 <div class="">Blood+</div>
                 <div class="status__completed">Completed</div>
-                <div class="">50 / 50</div>
+                <div class="">50 / 50 
+                    <button class="btn-watchingOneEpisode">+</button>
+                </div>
             </div>
             <div class="tracker-grid__body">
                 <div class="">2</div>
@@ -169,5 +171,9 @@
         background-color: oklch(0.7205 0 300);
         border-radius: 50%;
     }
+}
+
+.btn-watchingOneEpisode{
+
 }
 </style>

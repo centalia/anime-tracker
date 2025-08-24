@@ -3,7 +3,7 @@
 
 @mixin tracker-grid(){
     display: grid;
-    grid-template-columns: 78px 829px 163px 229px;
+    grid-template-columns: 78px 829px 163px 229px 50px;
     grid-template-rows: 47px;
 
     place-items: center;
