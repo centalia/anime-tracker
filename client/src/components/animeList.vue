@@ -13,7 +13,8 @@
                 <div class="">1</div>
                 <div class="">Blood+</div>
                 <div class="status__completed">Completed</div>
-                <div class="">50 / 50 
+                <div class="">50 / 50 </div>
+                <div class="">
                     <button class="btn-watchingOneEpisode">+</button>
                 </div>
             </div>
