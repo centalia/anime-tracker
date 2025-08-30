@@ -9,44 +9,39 @@
             </div>
         </div>
         <div class="tracker-grid" id="tracker-body">
-            <div class="tracker-grid__body">
-                <div class="">1</div>
-                <div class="">Blood+</div>
-                <div class="status__completed">Completed</div>
-                <div class="">50 / 50 </div>
-                <div class="">
-                    <button class="btn-watchingOneEpisode">+</button>
-                </div>
-            </div>
-            <div class="tracker-grid__body">
-                <div class="">2</div>
-                <div class="">Call o the Night Season 2</div>
-                <div class="status__watching">Watching</div>
-                <div class="">2 / 12</div>
-            </div>
-            <div class="tracker-grid__body">
-                <div class="">3</div>
-                <div class="">Black Butler: Emerald Witch Arc</div>
-                <div class="status__on-hold">On Hold</div>
-                <div class="">3 / 12</div>
-            </div>
-            <div class="tracker-grid__body">
-                <div class="">4</div>
-                <div class="">Apocalypse Bringer Mynoghra: World Conquest Starts with the Civilization of Ruin</div>
-                <div class="status__drop">Drop</div>
-                <div class="">2 / 12</div>
-            </div>
-            <div class="tracker-grid__body">
-                <div class="">5</div>
-                <div class="">Gachiakuta</div>
-                <div class="status__plan-to-watch">Plan to watch</div>
-                <div class="">24</div>
-            </div>
+            <div v-for="(anime,index) in animeList" :key="anime._id"  class="tracker-grid__body">
+                <div>{{ index + 1 }}</div>
+                <div>{{ anime.title }}</div>
+                <div :class="`status__${anime.status}`">{{ getStatusText(anime.status) }}</div>
+                <div>{{ anime.progress }} / {{ anime.episodes }}</div>
+            </div>        
         </div>
     </div>
 </template>
 <script>
-
+export default {
+    props:{
+        animeList:Array
+    },
+    methods:{
+        getStatusText(status){
+            switch (status) {
+                case 'watching':
+                    return 'Watching';
+                case 'completed':
+                    return 'Completed';
+                case 'planned':
+                    return 'Plan to watch';
+                case 'on-hold':
+                    return 'On hold';
+                case 'dropped':
+                    return 'Dropped'
+            default:  
+                return status;
+            }    
+        }
+    }
+}
 </script>
 <style lang="scss">
 @use '@/styles/scss/_fonts' as *;
@@ -133,7 +128,7 @@
         border-radius: 50%;
     }
 }
-.status__drop{
+.status__dropped{
     position: relative;
     border: 1px solid $color-status__drop;
     border-radius: 17px;
@@ -153,7 +148,7 @@
         border-radius: 50%;
     }
 }
-.status__plan-to-watch{
+.status__planned{
     position: relative;
     border: 1px solid $color-status__planned;
     border-radius: 17px;

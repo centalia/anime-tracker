@@ -9,7 +9,7 @@
     place-items: center;
     color: $base-white;
 
-    border: 1px solid $text-in-field;
+    border: 1px solid $color-border;
     border-radius: 0;
 
     &:not(.tracker-grid__body){
@@ -26,5 +26,4 @@
             border-radius: 0 0 8px 8px;
         }
     }
-    
 }
