@@ -143,7 +143,7 @@ export default {
     &:active{
         // background-color: oklch(0.895 0.0987 94.9);
         
-        border: none;
+        border: 1px solid oklch(1 0 0 / 10%);
         transform: scale(0.95);
         box-shadow: 0 2px 4px oklch(0% 0 0 / 20%);
     }
