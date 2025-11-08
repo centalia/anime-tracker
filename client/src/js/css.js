@@ -1,2 +1,2 @@
-    import '@a1rth/css-normalize'
-    import '@/css/style.css'
+import "@a1rth/css-normalize";
+import "/src/sass/App.scss";
