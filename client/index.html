@@ -8,7 +8,7 @@
   <body>
     <div class="animeTracker">
       <div class="animeTracker__header">
-        <div class="animeTracker__search-container">
+        <div class="animeTracker__search">
           <input class="animeTracker__search-input" type="text" id="animeSearch" placeholder="Поиск">
           <button class="animeTracker__search-btn" type="button">
             <svg class="btn_icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,40 @@
           </button>
         </div>
       </div>
-      <h1 class="animeTracker__title">AniTracker</h1>
+      <div class="animeTracker__nav">
+        <ul class="animeTracker__nav-list">
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter(null)">
+              Всё аниме
+            </button>
+          </li>
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter('plan_to_watch')">
+              В планах
+            </button>
+          </li>
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter('watching')">
+              Смотрю
+            </button>
+          </li>
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter('completed')">
+              Просмотрено
+            </button>
+          </li>
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter('on_hold')">
+              Отложено
+            </button>
+          </li>
+          <li>
+            <button class="btn-filter animeTracker__nav-items" onclick="setFilter('dropper')">
+              Брошено
+            </button>
+          </li>
+        </ul>
+      </div>
       <div class="animeTracker__form">
 
       </div>
@@ -64,16 +97,7 @@
       <div class="overlay hidden"></div>
     </header>
     <main>
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__items"><button onclick="setFilter(null)">Всё аниме</button></li>
-          <li class="nav__items"><button onclick="setFilter('plan_to_watch')">В планах</button></li>
-          <li class="nav__items"><button onclick="setFilter('watching')">Смотрю</button></li>
-          <li class="nav__items"><button onclick="setFilter('completed')">Просмотрено</button></li>
-          <li class="nav__items"><button onclick="setFilter('on_hold')">Отложено</button></li>
-          <li class="nav__items"><button onclick="setFilter('dropper')">Брошено</button></li>
-        </ul>
-      </nav>
+      
       <div class="tracker-grid text" id="tracker-header">
         <div class="tracker-grid__border"></div>
         <div class="tracker-grid__border">#</div>
