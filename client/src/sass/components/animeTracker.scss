@@ -1,44 +1,85 @@
-@use '/src/sass/variables' as *;
+@use "/src/sass/variables" as *;
 
-.animeTracker{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    row-gap: 24px;
-    width: 100%;
-    max-width: 1080px;
-    min-width: 1000px;
-    background-color: $color-white;
-    border: $border;
-    border-radius: $border-radius;
-    box-shadow: $box-shadow;
+.animeTracker {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 100%;
+  max-width: 1080px;
+  min-width: 1000px;
+  background-color: $color-dark-1;
+  border: $border;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
 }
 
-.animeTracker__header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 46px;
+.animeTracker__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  background: radial-gradient(
+    107.95% 57.49% at 50% 100%,
+    #18253533 0%,
+    #18253585 5%,
+    #182535d9 20%,
+    #182535 60%,
+    #192330 100%
+  );
 }
 
-.animeTracker__search{
-    height: 34px;
+.animeTracker__search-container {
+  display: flex;
 }
 
-.animeTracker__title{
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+.animeTracker__search-input {
+  flex: 1;
+  height: $inputSearch;
+  padding: 0;
+  border: 1px solid $color-dark-2;
+  border-radius: 8px 0 0 8px;
+  background-color: #3d4450;
 }
 
-.animeTracker__form{
-    display: flex;
-    column-gap: 16px;
+.animeTracker__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $inputSearch;
+  width: $inputSearch;
+  padding: 0;
+  background-color: #182535;
+  border: 1px solid $color-dark-2;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-image: url(#{btn-icon});
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.animeTracker__field{
-    width: 100%;
+.btn_icon {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 4px 4px;
+  color: white;
+}
+
+.animeTracker__title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.animeTracker__form {
+  display: flex;
+  column-gap: 16px;
+}
+
+.animeTracker__field {
+  width: 100%;
 }
