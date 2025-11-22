@@ -7,9 +7,10 @@
   width: 100%;
   height: 46px;
   background-color: $steam-panel;
-  border: $border;
+  border-bottom: 1px solid $steam-border-light;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  box-shadow: $box-shadow;
   margin-bottom: 10px;
   &__search{
     display: flex;
@@ -99,15 +100,15 @@
 }
 .row{
   display: grid;
-  grid-template-columns: 30px 800px repeat(2, 100px);
+  grid-template-columns: 30px 720px 180px 100px;
   grid-template-rows: 45px;
   gap: 1px;
 
   text-align: center;
   align-items: center;
-
-  &:hover{
+  &:not(:has(.status:hover)):hover{
     background-color: rgba(255,255,255,0.15);
+    transition-duration: $transition-duration;
     &:first-child{
       border-top-left-radius: 12px;
       border-top-right-radius: 12px;
@@ -117,19 +118,69 @@
       border-bottom-right-radius: 12px;
     }
   }
-  &:first-child{
-    border-bottom: 2px solid black ;
-  }
-  &:last-child{
-
-  }
   &_header{
     font-size: $font-size-lg;
   }
 }
 
+.tracker-table
+.row{
+  position: relative;
+  padding: 2px 0 ;
+  &::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(59, 83, 112, 0.3) 20%,
+      rgba(59, 83, 112, 1) 50%,
+      rgba(59, 83, 112, 0.3) 80%,
+      transparent 100%
+    );
+    margin: 0 auto;
+  }
+  &:last-child::after{
+    display: none;
+  }
+}
+
 .col{
   color: $steam-text-soft;
+}
+
+.status{
+  position: relative;
+  border: 1px solid black;
+  border-radius: 17px;
+  padding: 1px 7px 1px 28px;
+  background-color: rgb(255,255,255,0.15);
+  letter-spacing: 0.8px;
+  &::before{
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid $steam-border-light;
+  }
+  &:hover{
+    background-color: $steam-blue;
+    transition-duration: back $transition-duration;
+  }
+  &--completed::before{ background-color: oklch(0.5862 0.185 145); }
+  &--watching::before { background-color: oklch(0.6255 0.1357 240); }
+  &--on-hold::before  { background-color: oklch(0.8306 0.1815 73.51); } 
+  &--dropped::before  { background-color: oklch(0.4921 0.1973 25); }
+  &--planned::before  { background-color: oklch(0.5097 0 300); }
 }
 
 .btn_icon {
