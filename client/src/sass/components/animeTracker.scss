@@ -1,96 +1,126 @@
 @use "/src/sass/variables" as *;
 
-.animeTracker {
+.header{
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;;
   width: 100%;
-
-  &__header {
+  height: 46px;
+  background-color: $steam-panel;
+  border: $border;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin-bottom: 10px;
+  &__search{
     display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    height: 46px;
-    background: radial-gradient(
-      107.95% 57.49% at 50% 100%,
-      #18253533 0%,
-      #18253585 5%,
-      #182535d9 20%,
-      #182535 60%,
-      #192330 100%
-    );
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-  &__search {
-  display: flex;
-  width: 100%;
-  margin: 0 10px;
-  max-width: 445px + 34px;
-  box-shadow: $box-shadow;
-  &-input {
-    height: $inputSearch;
-    width: 100%;
-    max-width: 445px;
-    padding: 0;
-    border: 1px solid $color-dark-2;
-    border-radius: 8px 0 0 8px;
-    border-right: none;
-    background-color: #3d4450;
-    &:hover{
-      background-color: #555f70;
+    margin: 0 10px;
+    max-width: 445px + 34px;
+    box-shadow: $box-shadow;
+    &-input{
+      height: $inputSearch;
+      color: $steam-text-soft;
+      width: 100%;
+      max-width: 445px;
+      padding: 0;
+      padding-left: 10px;
+      border: $border;
+      border-radius: 8px 0 0 8px;
+      border-right: none;
+      background: rgba(255,255,255,0.08);
+      &:hover{
+        background-color: rgba(255,255,255,0.15);
+      }
+      &:active{
+        background-color: rgba(255,255,255,0.2);
+      }
     }
-    &:active{
-      background-color: #555f70;
-    }
-  }
-  &-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: $inputSearch;
-    width: $inputSearch;
-    padding: 0;
-    background-color: #182535;
-    border: 1px solid $color-dark-2;
-    border-left: none;
-    border-radius: 0 8px 8px 0;
-    &:hover{
-      background-color: #2e4663;
-      .btn_icon{
-        transform: scale(1.2);
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: $inputSearch;
+      width: $inputSearch;
+      padding: 0;
+      background-color: rgba(255,255,255,0.15);
+      border: $border;
+      border-left: 1px solid $color-dark-2;
+      border-radius: 0 8px 8px 0;
+      &:hover{
+        background-color: $steam-blue;
+        .btn_icon{
+          transform: scale(1.2);
         }
       }
     }
   }
-  &__form {
-    display: flex;
-    column-gap: 16px;
-  }
-  &__field {
-    width: 100%;
-  }
-  &__nav{
+}
+
+.tracker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  
+  &-nav{
     margin: 10px;
-    &-list{
+    &__list{
       display: flex;
       gap: 4px
     }
-    &-items{
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      color: white;
-      padding: 8px 12px;
+    &__items{
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      color: $steam-text-soft;
+      padding: 6px 10px;
+      border: $border;
       border-radius: 12px;
       &:hover{
-        background: rgba(255, 255, 255, 0.3);
+        background:$steam-blue;
       }
       &:active{
-        background: rgba(255, 255, 255, 0.3);
+        background:rgba(255,255,255,0.2);
       }
     }
   }
+  &-table{
+    margin-top: 10px;
+    gap: 1px;
+    display: grid;
+    background-color: $steam-panel-light;
+    border: $border;
+    border-radius: 12px;
+  }
+
+  &-table__header{
+    display: contents;
+  }  
+}
+.row{
+  display: grid;
+  grid-template-columns: 30px 800px 100px;
+  grid-template-rows: 30px;
+  gap: 1px;
+  border: 1px solid $color-gray-4;
+
+  text-align: center;
+  align-items: center;
+  &:first-child{
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+  }
+  &:last-child{
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+  }
+  &_header{
+    font-size: $font-size-lg;
+  }
+}
+
+.col{
+  color: $steam-text-soft;
 }
 
 .btn_icon {
