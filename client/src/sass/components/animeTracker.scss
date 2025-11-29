@@ -74,9 +74,7 @@
       width: 170px;
       background-color: rgba(255,255,255,0.15);
       border-radius: 8px;
-
     }
-
     &:hover{
       background-color: $steam-blue;
       .btn_icon{
@@ -129,11 +127,10 @@
   }
   &-modal{
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    width: 80%;
-    background-color: rgba(255,255,255,0.15);
+    justify-content: center;
+    width: 500px;
+    background-color: $steam-panel-light;
     border: $border;
     border-radius: 12px;
     color: $steam-text-soft;
@@ -232,6 +229,57 @@
   color: white;
 }
 
-.modal{
+.tracker-modal{
+  width: 320px;
   color: $steam-text-soft;
+  &__body{
+    display: flex;
+    gap: 20px;
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    &--text{
+      margin-top: 0;
+    }
+  }
+  &__btn--close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 34px;
+    font-size: 24px;
+    color: $steam-text-soft;
+    background-color: rgb(255,255,255,0.15);
+
+    border: $border;
+    border-radius: 8px;
+    &:hover{
+      background-color: rgba(255,255,255,0.15);
+      transition-duration: $transition-duration;
+    }
+  }
+  &__form{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 10px;
+  }
+  &__label{
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    &--text{
+
+    }
+  }
+  &__input{
+
+  }
+  &__select{
+
+  }
 }
