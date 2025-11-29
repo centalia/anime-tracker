@@ -15,14 +15,14 @@
         </ul>
       </nav>
       <div class="header__search">
-        <input class="header__search-input" type="text" id="animeSearch" placeholder="Поиск">
-        <button class="header-btn header-btn--search" type="button">
+        <input class="field__input field__input--search p-0" type="text" id="animeSearch" placeholder="Поиск">
+        <button class="btn btn--search" type="button">
           <svg class="btn_icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14 14L11.1 11.1M12.6667 7.33333C12.6667 10.2789 10.2789 12.6667 7.33333 12.6667C4.38781 12.6667 2 10.2789 2 7.33333C2 4.38781 4.38781 2 7.33333 2C10.2789 2 12.6667 4.38781 12.6667 7.33333Z" stroke="#1E1E1E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </button>
       </div>
-      <button class="header-btn header-btn--add">Добавить в список</button>
+      <button class="btn btn--add">Добавить в список</button>
     </header>
 
     <main class="tracker">
@@ -102,16 +102,25 @@
       </section>
       <section class="tracker-modal">
         <div class="tracker-modal__header">
-            <h3 class="tracker-modal__header--text">Добавление тайтла</h3>
-            <button class="tracker-modal__btn--close">&times;</button>
+          <h3 class="mt-0">
+            Добавление тайтла
+          </h3>
+          <button class="btn btn--close">
+            &times;
+          </button>
         </div>
         <div class="tracker-modal__body">
           <div class="tracker-modal__form">
-            <label class="tracker-modal__label">Название тайтла: 
-              <input class="tracker-modal__input"></label>
-            <label class="tracker-modal__label">Прогресс просмотра: 
-              <input class="tracker-modal__input"></label>
-            <p class="tracker-modal__label--text">Статус просмотра: 
+            <div class="tracker-modal__form-item">
+              <label class="tracker-modal__label">Название тайтла: </label>
+              <input class="field__input field__input--form">
+            </div>
+            <div class="tracker-modal__form-item">
+              <label class="tracker-modal__label">Прогресс просмотра: </label>
+                <p> 3 / 26</p>
+            </div>
+            <div class="tracker-modal__form-item">
+              <label class="tracker-modal__label">Статус просмотра: </label>
               <select class="tracker-modal__select">
                 <option value="watching">Смотрю</option>
                 <option value="completed">Просмотрено</option>
@@ -119,8 +128,10 @@
                 <option value="dropped">Брошено</option>
                 <option value="plan_to_watch">В планах</option>
               </select>
-            </p>
-            <button type="button" class="tracker-modal__btn--add">Добавить</button>
+            </div>
+            <div class="u-center mb-1">
+              <button type="button" class="btn btn--add btn--add-form">Добавить</button>
+            </div>            
           </div>
         </div>
       </section>

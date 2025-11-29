@@ -1,14 +1,49 @@
 @use '/src/sass/variables' as *;
 
-.btn-search{
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     height: $inputSearch;
-    width: $inputSearch;
-    border: 1px solid $color-dark-2;
-    border-radius: 0 8px 8px 0;
+
+    color: $steam-text-soft;
+    background-color: rgba(255,255,255,0.15);
+    border: $border;
+    border-radius: 8px;
+    padding: 0;
+    &--search{
+        width: $inputSearch;
+        border-left: 1px solid $color-dark-2;
+        border-radius: 0 8px 8px 0;
+        &:hover{
+            background-color: rgba(255,255,255,0.35);
+            .btn_icon{
+                transform: scale(1.2)
+            }
+        }
+    }
+    &--add{
+        width: 170px;
+        &:hover{
+            background-color: $steam-blue;
+        }
+        &-form{
+            width: 100px;
+        }
+    }
+    &--close{
+        width: $inputSearch;
+        font-size: 24px;
+        &:hover{
+            background-color: rgba(255,255,255,0.35);
+        }
+    }
 }
 
-.btn-filter{
-    border: none;
-    outline: none;
-
+.btn_icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 4px 4px;
+    color: white;
 }

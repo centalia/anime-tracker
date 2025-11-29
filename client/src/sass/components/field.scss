@@ -1,0 +1,24 @@
+@use "/src/sass/variables" as *;
+
+.field{
+    &__input{
+        height: $inputSearch;
+        color: $steam-text-soft;
+        border: $border;
+        background: rgba(255,255,255,0.08);
+        padding-left: 10px;
+        &:hover{
+            background-color: rgba(255,255,255,0.15);
+        }
+        &--search{
+            width: 100%;
+            max-width: 445px;
+            border-radius: 8px 0 0 8px;
+            border-right: none;
+
+        }
+        &--form{
+            border-radius: 8px;
+        }
+    }
+}

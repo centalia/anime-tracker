@@ -35,53 +35,7 @@
     margin: 0 10px;
     max-width: 445px + 34px;
     box-shadow: $box-shadow;
-    &-input{
-      height: $inputSearch;
-      color: $steam-text-soft;
-      width: 100%;
-      max-width: 445px;
-      padding: 0;
-      padding-left: 10px;
-      border: $border;
-      border-radius: 8px 0 0 8px;
-      border-right: none;
-      background: rgba(255,255,255,0.08);
-      &:hover{
-        background-color: rgba(255,255,255,0.15);
-      }
-      &:active{
-        background-color: rgba(255,255,255,0.2);
-      }
-    }
   }    
-  &-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: $steam-text-soft;
-    padding: 0;
-    border: $border;
-    border-left: 1px solid $color-dark-2;
-    border-radius: 0 8px 8px 0;
-    
-    &--search{
-      height: $inputSearch;
-      width: $inputSearch;
-      background-color: rgba(255,255,255,0.15);
-    }
-    &--add{
-      height: $inputSearch;
-      width: 170px;
-      background-color: rgba(255,255,255,0.15);
-      border-radius: 8px;
-    }
-    &:hover{
-      background-color: $steam-blue;
-      .btn_icon{
-        transform: scale(1.2);
-      }
-    }
-  }
 }
 
 .tracker {
@@ -129,12 +83,37 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 500px;
+    width: 410px;
     background-color: $steam-panel-light;
     border: $border;
     border-radius: 12px;
     color: $steam-text-soft;
     letter-spacing: 0.5px;
+    &__body{
+      display: flex;
+    }
+    &__header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    &__form{
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-left: 10px;
+      &-item{
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+    }
+    &__label{
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+    }
   }
 }
 .row{
@@ -220,66 +199,4 @@
   &--on-hold::before  { background-color: oklch(0.8306 0.1815 73.51); } 
   &--dropped::before  { background-color: oklch(0.4921 0.1973 25); }
   &--planned::before  { background-color: oklch(0.5097 0 300); }
-}
-
-.btn_icon {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 4px 4px;
-  color: white;
-}
-
-.tracker-modal{
-  width: 320px;
-  color: $steam-text-soft;
-  &__body{
-    display: flex;
-    gap: 20px;
-  }
-  &__header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    &--text{
-      margin-top: 0;
-    }
-  }
-  &__btn--close{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 34px;
-    width: 34px;
-    font-size: 24px;
-    color: $steam-text-soft;
-    background-color: rgb(255,255,255,0.15);
-
-    border: $border;
-    border-radius: 8px;
-    &:hover{
-      background-color: rgba(255,255,255,0.15);
-      transition-duration: $transition-duration;
-    }
-  }
-  &__form{
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-left: 10px;
-  }
-  &__label{
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    &--text{
-
-    }
-  }
-  &__input{
-
-  }
-  &__select{
-
-  }
 }
